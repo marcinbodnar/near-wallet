@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "20de3e9dffea44963f83",
-    "url": "/near-wallet/static/css/main.3f1b978a.chunk.css"
+    "revision": "584de59e994c77e8745a3580caa0977b",
+    "url": "/near-wallet/static/media/near.584de59e.svg"
   },
   {
-    "revision": "20de3e9dffea44963f83",
-    "url": "/near-wallet/static/js/main.2acfed5c.chunk.js"
+    "revision": "e3e170b1310ca2320983",
+    "url": "/near-wallet/static/css/main.2e0cdc84.chunk.css"
   },
   {
     "revision": "08bf36f9ec7d43b43689",
     "url": "/near-wallet/static/js/runtime~main.dfea4e72.js"
   },
   {
-    "revision": "4eb1b46b578769cab767",
-    "url": "/near-wallet/static/js/2.ef2ce6a6.chunk.js"
+    "revision": "1066f663e2c52bb43810",
+    "url": "/near-wallet/static/js/2.ffb48eb5.chunk.js"
   },
   {
     "revision": "4d7da4912d87b6e16bd5636f9242aefa",
@@ -92,8 +92,8 @@ self.__precacheManifest = [
     "url": "/near-wallet/static/media/icon-help.f6c0707a.svg"
   },
   {
-    "revision": "584de59e994c77e8745a3580caa0977b",
-    "url": "/near-wallet/static/media/near.584de59e.svg"
+    "revision": "e3e170b1310ca2320983",
+    "url": "/near-wallet/static/js/main.fc2d19d7.chunk.js"
   },
   {
     "revision": "350474420a5ffa53576a6b224f288e02",
@@ -176,15 +176,15 @@ self.__precacheManifest = [
     "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Medium.971c1fec.otf"
   },
   {
-    "revision": "6de0530b5b9708aa0ee264851a0cf1a2",
-    "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Regular.6de0530b.otf"
-  },
-  {
     "revision": "dde73b38b35929e873bb5c9955f5c863",
     "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Light.dde73b38.otf"
   },
   {
-    "revision": "8e89087f3cb8f48ac26ed29d1f4fd5f6",
+    "revision": "6de0530b5b9708aa0ee264851a0cf1a2",
+    "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Regular.6de0530b.otf"
+  },
+  {
+    "revision": "eb5914c4a95e2798c86322a7d32e8031",
     "url": "/near-wallet/index.html"
   }
 ];
