@@ -21,15 +21,13 @@ import { ThemeProvider } from 'styled-components'
 import GlobalStyle from './GlobalStyle'
 const theme = {}
 
-const PATH_PREFIX = process.env.PUBLIC_URL
-
 class Routing extends Component {
    render() {
       return (
          <div className='App'>
             <GlobalStyle />
 
-            <ConnectedRouter basename={PATH_PREFIX}  history={this.props.history}>
+            <ConnectedRouter history={this.props.history}>
                <ThemeProvider theme={theme}>
                   <ResponsiveContainer>
                      <Switch>

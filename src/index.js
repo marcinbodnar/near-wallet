@@ -11,7 +11,7 @@ import createMiddleware from './middleware'
 import Routing from './components/Routing'
 import * as serviceWorker from './serviceWorker'
 
-const history = createBrowserHistory()
+const history = createBrowserHistory({ basename: process.env.PUBLIC_URL })
 
 const store = createStore(createRootReducer(history), createMiddleware(history))
 
