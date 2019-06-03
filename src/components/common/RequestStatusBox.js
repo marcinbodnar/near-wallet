@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Responsive } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import styled from 'styled-components'
 
 const RequestStatusBoxGrid = styled(Grid)`
@@ -9,7 +9,6 @@ const RequestStatusBoxGrid = styled(Grid)`
       line-height: 64px;
       margin: 0 0 0 0;
       padding-left: 0px;
-
       &.problem {
          color: #ff585d;
       }
@@ -23,23 +22,23 @@ const RequestStatusBoxGrid = styled(Grid)`
    }
 
    @media screen and (max-width: 991px) {
-      .note-box {
+      && {
          padding-left: 0px;
       }
    }
 
    @media screen and (max-width: 767px) {
       &&& .alert-info {
-         padding: 0 0 0 24px;
-         line-height: 34px;
+         margin: 12px 0 0 24px;
+         line-height: 20px;
          font-size: 14px;
       }
 
       && {
          padding-left: 1rem;
-         margin-top: 10px;
+         margin-top: 0px;
       }
-  }
+   }
 `
 /**
  * Renders request status.
@@ -48,19 +47,17 @@ const RequestStatusBoxGrid = styled(Grid)`
  * @param requestStatus.success {boolean} true if request was succesful
  * @param requestStatus.messageCode {string} localization code of status message to display
  */
-const RequestStatusBox = ({ requestStatus }) => (
-   requestStatus ?
+const RequestStatusBox = ({ requestStatus }) =>
+   requestStatus ? (
       <RequestStatusBoxGrid>
-         <Responsive
-            as={Grid.Row}
-            minWidth={Responsive.onlyTablet.minWidth}
+         <Grid.Column
+            className={`alert-info ${
+               requestStatus.success ? 'success' : 'problem'
+            }`}
          >
-            <Grid.Column className={`alert-info ${requestStatus.success ? 'success' : 'problem'}`}>
-               {requestStatus.messageCode}
-            </Grid.Column>
-         </Responsive>
+            {requestStatus.messageCode}
+         </Grid.Column>
       </RequestStatusBoxGrid>
-      : null
-)
+   ) : null
 
 export default RequestStatusBox

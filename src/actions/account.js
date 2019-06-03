@@ -1,6 +1,6 @@
 import { parse } from 'query-string'
-import { createActions } from 'redux-actions';
-import { Wallet } from '../utils/wallet';
+import { createActions } from 'redux-actions'
+import { Wallet } from '../utils/wallet'
 
 export const REFRESH_ACCOUNT = 'REFRESH_ACCOUNT'
 export const LOADER_ACCOUNT = 'LOADER_ACCOUNT'
@@ -76,17 +76,48 @@ export function handleRefreshUrl(location) {
 
 const wallet = new Wallet()
 
-export const { requestCode, validateCode } = createActions({
+export const {
+   requestCode,
+   validateCode,
+   checkNewAccount,
+   createNewAccount,
+   checkAccountAvailable,
+   clear
+} = createActions({
    REQUEST_CODE: [
       wallet.requestCode.bind(wallet),
-      () => ({ successCode: 'account.requestCode.success', errorCode: 'account.requestCode.error' })
+      () => ({
+         successCode: 'account.requestCode.success',
+         errorCode: 'account.requestCode.error'
+      })
    ],
    VALIDATE_CODE: [
       wallet.validateCode.bind(wallet),
-      () => ({ successCode: 'account.validateCode.success', errorCode: 'account.validateCode.error' })
-   ]
+      () => ({
+         successCode: 'account.validateCode.success',
+         errorCode: 'account.validateCode.error'
+      })
+   ],
+   CHECK_NEW_ACCOUNT: [
+      wallet.checkNewAccount.bind(wallet),
+      () => ({
+         successCode: 'Congrats! this name is available.',
+         errorCode: 'Username is taken. Try something else.'
+      })
+   ],
+   CREATE_NEW_ACCOUNT: [
+      wallet.createNewAccount.bind(wallet),
+      () => ({
+         successCode: 'Congrats! this name is available.',
+         errorCode: 'Username is taken. Try something else.'
+      })
+   ],
+   CHECK_ACCOUNT_AVAILABLE: [
+      wallet.checkAccountAvailable.bind(wallet),
+      () => ({
+         successCode: 'Username is available.',
+         errorCode: 'Username is unavailable.'
+      })
+   ],
+   CLEAR: null
 })
-
-
-
-

@@ -5,7 +5,12 @@ import { withRouter } from 'react-router-dom'
 
 import { Wallet } from '../../utils/wallet'
 
-import { handleRefreshAccount, handleRefreshUrl } from '../../actions/account'
+import {
+   handleRefreshAccount,
+   handleRefreshUrl,
+   checkAccountAvailable,
+   clear
+} from '../../actions/account'
 
 import SendMoneyContainer from './SendMoneyContainer'
 import SendMoneyFirstStep from './SendMoneyFirstStep'
@@ -15,14 +20,11 @@ import SendMoneyThirdStep from './SendMoneyThirdStep'
 class SendMoney extends Component {
    state = {
       loader: false,
-      formLoader: false,
       step: 1,
       note: '',
       expandNote: false,
       paramAccountId: false,
       accountId: '',
-      successMessage: false,
-      errorMessage: false,
       amount: ''
    }
 
@@ -38,29 +40,27 @@ class SendMoney extends Component {
       }))
 
       if (paramId) {
-         this.wallet
-            .checkAccount(paramId)
-            .then(d => {
-               this.setState(() => ({
-                  paramAccountId: true,
-                  accountId: paramId
-               }))
-            })
-            .catch(e => {
-               this.setState(() => ({
-                  accountId: ''
-               }))
-            })
-            .finally(() => {
-               this.setState(() => ({
-                  loader: false
-               }))
-            })
+         this.props.checkAccountAvailable(paramId).then(({ error }) => {
+            this.setState(() => ({
+               loader: false,
+               accountId: paramId
+            }))
+
+            if (error) return
+
+            this.setState(() => ({
+               paramAccountId: true
+            }))
+         })
       } else {
          this.setState(() => ({
             loader: false
          }))
       }
+   }
+
+   componentWillUnmount = () => {
+      this.props.clear()
    }
 
    handleNextStep = () => {
@@ -83,47 +83,19 @@ class SendMoney extends Component {
 
    handleChangeAccountId = (e, { name, value }) => {
       this.setState(() => ({
-         [name]: value,
-         successMessage: false,
-         errorMessage: false,
-         formLoader: false
-      }))
-
-      if (!this.wallet.isLegitAccountId(value)) {
-         return false
-      }
-
-      this.setState(() => ({
-         formLoader: true
+         [name]: value
       }))
 
       this.timeout && clearTimeout(this.timeout)
 
       this.timeout = setTimeout(() => {
-         this.wallet
-            .checkAccount(value)
-            .then(d => {
-               this.setState(() => ({
-                  successMessage: true,
-                  errorMessage: false
-               }))
-            })
-            .catch(e => {
-               this.setState(() => ({
-                  successMessage: false,
-                  errorMessage: true
-               }))
-            })
-            .finally(() => {
-               this.setState(() => ({
-                  formLoader: false
-               }))
-            })
+         this.props.checkAccountAvailable(value)
       }, 500)
    }
 
    render() {
       const { step } = this.state
+      const { requestStatus, formLoader } = this.props
 
       return (
          <SendMoneyContainer step={step}>
@@ -132,6 +104,8 @@ class SendMoney extends Component {
                   handleNextStep={this.handleNextStep}
                   handleChange={this.handleChange}
                   handleChangeAccountId={this.handleChangeAccountId}
+                  requestStatus={requestStatus}
+                  formLoader={formLoader}
                   {...this.state}
                />
             )}
@@ -150,10 +124,14 @@ class SendMoney extends Component {
 
 const mapDispatchToProps = {
    handleRefreshAccount,
-   handleRefreshUrl
+   handleRefreshUrl,
+   checkAccountAvailable,
+   clear
 }
 
-const mapStateToProps = () => ({})
+const mapStateToProps = ({ account }) => ({
+   ...account
+})
 
 export const SendMoneyWithRouter = connect(
    mapStateToProps,

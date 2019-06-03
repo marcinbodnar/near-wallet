@@ -18,7 +18,7 @@ export class Wallet {
    constructor() {
       this.key_store = new nearlib.BrowserLocalStorageKeystore()
       this.near = nearlib.Near.createDefaultConfig(NODE_URL)
-      this.account = new nearlib.Account(this.near.nearClient);
+      this.account = new nearlib.Account(this.near.nearClient)
       this.accounts = JSON.parse(
          localStorage.getItem(KEY_WALLET_ACCOUNTS) || '{}'
       )
@@ -118,32 +118,48 @@ export class Wallet {
       return await this.near.nearClient.viewAccount(accountId)
    }
 
-   async checkAccount(accountId) {
-      if (accountId !== this.accountId) {
-         return await this.near.nearClient.viewAccount(accountId)
-      } else {
-         throw new Error('You are logged into account ' + accountId + ' .')
+   async checkAccountAvailable(accountId) {
+      if (!this.isLegitAccountId(accountId)) {
+         throw new Error()
+      }
+      if (accountId === this.accountId) {
+         throw new Error()
+      }
+      let remoteAccount = null
+      try {
+         remoteAccount = await this.near.nearClient.viewAccount(accountId)
+      } catch (e) {
+         throw new Error()
+      }
+      if (!!remoteAccount) {
+         return true
       }
    }
 
    async checkNewAccount(accountId) {
+      if (!this.isLegitAccountId(accountId)) {
+         throw new Error()
+      }
       if (accountId in this.accounts) {
-         throw new Error('Account ' + accountId + ' already exists.')
+         throw new Error()
       }
       let remoteAccount = null
       try {
          remoteAccount = await this.near.nearClient.viewAccount(accountId)
       } catch (e) {
-         // expected
+         return true
       }
       if (!!remoteAccount) {
-         throw new Error('Account ' + accountId + ' already exists.')
+         throw new Error()
       }
    }
 
    async createNewAccount(accountId) {
+      if (!this.isLegitAccountId(accountId)) {
+         throw new Error()
+      }
       if (accountId in this.accounts) {
-         throw new Error('Account ' + accountId + ' already exists.')
+         throw new Error()
       }
       let remoteAccount = null
       try {
@@ -152,9 +168,9 @@ export class Wallet {
          // expected
       }
       if (!!remoteAccount) {
-         throw new Error('Account ' + accountId + ' already exists.')
+         throw new Error()
       }
-      let keyPair = await nearlib.KeyPair.fromRandomSeed();
+      let keyPair = await nearlib.KeyPair.fromRandomSeed()
       return await new Promise((resolve, reject) => {
          let data = JSON.stringify({
             newAccountId: accountId,
@@ -184,22 +200,24 @@ export class Wallet {
          accountId,
          publicKey,
          contractId,
-         '',  // methodName
-         '',  // fundingOwner
-         0,  // fundingAmount
-      );
+         '', // methodName
+         '', // fundingOwner
+         0 // fundingAmount
+      )
       try {
-         const result = await this.near.waitForTransactionResult(addAccessKeyResponse);
-         const parsedUrl = new URL(successUrl);
-         parsedUrl.searchParams.set('account_id', accountId);
-         parsedUrl.searchParams.set('public_key', publicKey);
-         const redirectUrl = parsedUrl.href;
-         if (result.status === "Completed") {
-            window.location.href = redirectUrl;
+         const result = await this.near.waitForTransactionResult(
+            addAccessKeyResponse
+         )
+         const parsedUrl = new URL(successUrl)
+         parsedUrl.searchParams.set('account_id', accountId)
+         parsedUrl.searchParams.set('public_key', publicKey)
+         const redirectUrl = parsedUrl.href
+         if (result.status === 'Completed') {
+            window.location.href = redirectUrl
          }
       } catch (e) {
          // TODO: handle errors
-         console.log("Error on adding access key ", e);
+         console.log('Error on adding access key ', e)
       }
    }
 
@@ -274,14 +292,23 @@ export class Wallet {
    }
 
    requestCode(phoneNumber, accountId) {
-      return sendJson('POST', `${ACCOUNT_HELPER_URL}/account/${phoneNumber}/${accountId}/requestCode`)
+      return sendJson(
+         'POST',
+         `${ACCOUNT_HELPER_URL}/account/${phoneNumber}/${accountId}/requestCode`
+      )
    }
 
    async validateCode(phoneNumber, accountId, securityCode) {
       const key = this.key_store.getKey(accountId)
-      const signer = new nearlib.SimpleKeyStoreSigner(this.key_store);
-      const { signature } = key ? signer.signBuffer(Buffer.from(securityCode), accountId) : undefined;
-      return sendJson('POST', `${ACCOUNT_HELPER_URL}/account/${phoneNumber}/${accountId}/validateCode`, { securityCode, signature })
+      const signer = new nearlib.SimpleKeyStoreSigner(this.key_store)
+      const { signature } = key
+         ? signer.signBuffer(Buffer.from(securityCode), accountId)
+         : undefined
+      return sendJson(
+         'POST',
+         `${ACCOUNT_HELPER_URL}/account/${phoneNumber}/${accountId}/validateCode`,
+         { securityCode, signature }
+      )
    }
 
    receiveMessage(event) {

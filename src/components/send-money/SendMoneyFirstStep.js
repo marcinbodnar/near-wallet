@@ -8,10 +8,10 @@ import {
    Button,
    Form,
    Dimmer,
-   Loader,
-   Segment
+   Loader
 } from 'semantic-ui-react'
 
+import RequestStatusBox from '../common/RequestStatusBox'
 import CreateAccoungFormInput from '../accounts/CreateAccoungFormInput'
 
 import AccountGreyImage from '../../images/icon-account-grey.svg'
@@ -30,19 +30,10 @@ const CustomList = styled(List)`
             text-align: left;
          }
          .alert-info {
-            font-weight: 600;
-            margin: 0 0 -8px 0;
-            padding: 0 0 0 24px !important;
+            padding: 0 0 0 8px !important;
             line-height: 34px;
             font-size: 14px;
-            margin-top: -6px;
             text-align: left;
-            &.problem {
-               color: #ff585d;
-            }
-            &.success {
-               color: #6ad1e3;
-            }
          }
          .main-image {
             border: 0px;
@@ -161,9 +152,8 @@ const SendMoneyFirstStep = ({
    paramAccountId,
    accountId,
    handleChangeAccountId,
-   successMessage,
-   errorMessage,
    formLoader,
+   requestStatus,
    amount
 }) => (
    <CustomList className='box'>
@@ -191,20 +181,10 @@ const SendMoneyFirstStep = ({
                      formLoader={formLoader}
                      accountId={accountId}
                      handleChangeAccountId={handleChangeAccountId}
-                     successMessage={successMessage}
-                     errorMessage={errorMessage}
+                     requestStatus={requestStatus}
                   />
 
-                  {successMessage && (
-                     <Segment basic className='alert-info success'>
-                        Username is available.
-                     </Segment>
-                  )}
-                  {errorMessage && (
-                     <Segment basic className='alert-info problem'>
-                        Username is unavailable.
-                     </Segment>
-                  )}
+                  <RequestStatusBox requestStatus={requestStatus} />
                </List.Content>
             </List.Item>
          )}
@@ -238,7 +218,11 @@ const SendMoneyFirstStep = ({
                disabled={
                   paramAccountId
                      ? !(parseFloat(amount) > 0)
-                     : !(successMessage && parseFloat(amount) > 0)
+                     : !(
+                          requestStatus &&
+                          requestStatus.success &&
+                          parseFloat(amount) > 0
+                       )
                }
                onClick={handleNextStep}
             >
