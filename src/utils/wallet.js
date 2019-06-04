@@ -18,7 +18,7 @@ export class Wallet {
    constructor() {
       this.key_store = new nearlib.BrowserLocalStorageKeystore()
       this.near = nearlib.Near.createDefaultConfig(NODE_URL)
-      this.account = new nearlib.Account(this.near.nearClient);
+      this.account = new nearlib.Account(this.near.nearClient)
       this.accounts = JSON.parse(
          localStorage.getItem(KEY_WALLET_ACCOUNTS) || '{}'
       )
@@ -282,7 +282,10 @@ export class Wallet {
    }
 
    requestCode(phoneNumber, accountId) {
-      return sendJson('POST', `${ACCOUNT_HELPER_URL}/account/${phoneNumber}/${accountId}/requestCode`)
+      return sendJson(
+         'POST',
+         `${ACCOUNT_HELPER_URL}/account/${phoneNumber}/${accountId}/requestCode`
+      )
    }
 
    async validateCode(phoneNumber, accountId, securityCode) {

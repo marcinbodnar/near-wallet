@@ -115,7 +115,6 @@ class DashboardDetail extends Component {
          loader,
          notice,
          activity,
-
          newcontacts
       } = this.state
 
