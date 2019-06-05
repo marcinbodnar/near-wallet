@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "484a20eb137ae7e68b4f",
+    "revision": "d24515ac7a200476662a",
     "url": "/near-wallet/static/css/main.dc3f7bca.chunk.css"
   },
   {
-    "revision": "484a20eb137ae7e68b4f",
-    "url": "/near-wallet/static/js/main.ec2667b5.chunk.js"
+    "revision": "d24515ac7a200476662a",
+    "url": "/near-wallet/static/js/main.2f265aa7.chunk.js"
   },
   {
     "revision": "08bf36f9ec7d43b43689",
@@ -160,12 +160,12 @@ self.__precacheManifest = [
     "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Medium.971c1fec.otf"
   },
   {
-    "revision": "6de0530b5b9708aa0ee264851a0cf1a2",
-    "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Regular.6de0530b.otf"
-  },
-  {
     "revision": "dde73b38b35929e873bb5c9955f5c863",
     "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Light.dde73b38.otf"
+  },
+  {
+    "revision": "6de0530b5b9708aa0ee264851a0cf1a2",
+    "url": "/near-wallet/static/media/Branding with Type - Bw Seido Round Regular.6de0530b.otf"
   },
   {
     "revision": "c5c92b3da333cbf7dbb7159c0a35d3ce",
@@ -184,7 +184,7 @@ self.__precacheManifest = [
     "url": "/near-wallet/static/media/icon-t-transfer.f726da93.svg"
   },
   {
-    "revision": "c888a0d788fc804dd3587f670cf71f83",
+    "revision": "6eb8cd8fdd4ed65cf87d56c87d25ab76",
     "url": "/near-wallet/index.html"
   }
 ];
