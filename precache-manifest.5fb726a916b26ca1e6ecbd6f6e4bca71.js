@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "575046096f06bbc9adc1",
+    "revision": "cbb2c15b1fa8f3d5f244",
     "url": "/near-wallet/static/css/main.dc3f7bca.chunk.css"
   },
   {
-    "revision": "575046096f06bbc9adc1",
-    "url": "/near-wallet/static/js/main.4217ddf1.chunk.js"
+    "revision": "cbb2c15b1fa8f3d5f244",
+    "url": "/near-wallet/static/js/main.4da43c87.chunk.js"
   },
   {
     "revision": "08bf36f9ec7d43b43689",
     "url": "/near-wallet/static/js/runtime~main.dfea4e72.js"
   },
   {
-    "revision": "0d6ca21e1d354ffde2a4",
-    "url": "/near-wallet/static/js/2.e9ae275e.chunk.js"
+    "revision": "c2ab3dcdd53afe3b9cb8",
+    "url": "/near-wallet/static/js/2.167e210d.chunk.js"
   },
   {
     "revision": "4d7da4912d87b6e16bd5636f9242aefa",
@@ -184,7 +184,7 @@ self.__precacheManifest = [
     "url": "/near-wallet/static/media/icon-t-transfer.f726da93.svg"
   },
   {
-    "revision": "b92b31f69c028f4806c2cc13d9a33980",
+    "revision": "9c6176311aa45b700bb206ee90c75d6b",
     "url": "/near-wallet/index.html"
   }
 ];
