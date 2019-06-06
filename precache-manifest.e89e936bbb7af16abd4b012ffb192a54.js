@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/near-wallet/static/js/runtime~main.dfea4e72.js"
   },
   {
-    "revision": "480147c9db5f9286f67b",
-    "url": "/near-wallet/static/js/2.eb774382.chunk.js"
+    "revision": "08f5e4e0c51aaa1ea087",
+    "url": "/near-wallet/static/js/2.f82fcf68.chunk.js"
   },
   {
     "revision": "4d7da4912d87b6e16bd5636f9242aefa",
@@ -184,7 +184,7 @@ self.__precacheManifest = [
     "url": "/near-wallet/static/media/icon-t-transfer.f726da93.svg"
   },
   {
-    "revision": "7858cdcdd7fc5ab7a1f57aa5c8f3d24c",
+    "revision": "d7f4868e21879d7f022e25e210f319a8",
     "url": "/near-wallet/index.html"
   }
 ];
