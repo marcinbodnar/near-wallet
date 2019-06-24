@@ -137,9 +137,9 @@ const ListItem = ({
       onClick={() => wide && toggleShowSub(i, row)}
    >
       <Grid.Column
-         computer={wide ? 15 : 15}
-         tablet={wide ? 14 : 8}
-         mobile={wide ? 14 : 10}
+         computer={wide ? 15 : 16}
+         tablet={wide ? 14 : 16}
+         mobile={wide ? 14 : 16}
       >
          <Grid verticalAlign='middle'>
             <Grid.Column className='col-image'>
@@ -161,9 +161,9 @@ const ListItem = ({
          </Grid>
       </Grid.Column>
       <Grid.Column
-         computer={wide ? 1 : 1}
-         tablet={wide ? 2 : 8}
-         mobile={wide ? 2 : 6}
+         computer={wide ? 1 : 0}
+         tablet={wide ? 2 : 0}
+         mobile={wide ? 2 : 0}
          textAlign='right'
       >
          {wide ? (
