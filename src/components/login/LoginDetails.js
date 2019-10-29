@@ -2,8 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 
-import { ReactComponent as IconArrowLeft } from '../../images/icon-arrow-left.svg'
-import { ReactComponent as IconProblems } from '../../images/icon-problems.svg'
+import IconArrowLeft from '../../images/IconArrowLeft'
+import IconProblems from '../../images/IconProblems'
+
 
 import { Grid } from 'semantic-ui-react'
 
@@ -22,10 +23,6 @@ const CustomGrid = styled(Grid)`
          svg {
             margin: 0 12px 0 18px;
             width: 12px;
-
-            polyline {
-               stroke: #0072ce;
-            }
          }
       }
    }
@@ -54,23 +51,6 @@ const CustomGrid = styled(Grid)`
 
                   svg {
                      width: 26px;
-
-                     &.gray {
-                        polygon {
-                           stroke: #999;
-                        }
-                        .cls-2 {
-                           fill: #999;
-                        }
-                     }
-                     &.orange {
-                        polygon {
-                           stroke: #fca347;
-                        }
-                        .cls-2 {
-                           fill: #fca347;
-                        }
-                     }
                   }
                }
             }
@@ -104,7 +84,7 @@ class LoginDetails extends Component {
                   <div className='top-back'>
                      <Link to='/login'>
                         <div className='back-button h3 font-benton color-blue'>
-                           {/* <div><IconArrowLeft /></div> */}
+                           <div><IconArrowLeft color='#0072ce' /></div>
                            <div>Back</div>
                         </div>
                      </Link>
@@ -233,7 +213,8 @@ const ActionWarrning = ({ actionKind }) => (
       {actionKind === 'functionCall' && (
          <Fragment>
             <div className='icon'>
-            {/* <IconProblems className='gray' /> */}
+               <IconProblems color='#999' />
+               {/* <IconProblems className='gray' /> */}
             </div>
             No description specified for this method
          </Fragment>
